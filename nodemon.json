@@ -1,0 +1,14 @@
+{
+   "ext": "js,pug,css",
+   "ignore": [
+     "node_modules/**/*"
+   ],
+   "exec": "node ./bin/www",
+   "watch": [
+     "public/stylesheets/*.css",
+     "public/javascript/*/js",
+     "views/*.pug",
+     "app.js"
+   ]
+ }
+ 
