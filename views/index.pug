@@ -1,10 +1,10 @@
 extends layout
 
 block content
-   p Download Data for role
-   a(href='/download') Download CSV File
-   form(action="/update" method="post")
-      button(type="submit") Update
-   if error
-      p #{error}
+  main.main
+    h1.title Rabbithole Quest Data
+      div.container
+        button#update.btn Update Data
+        button#download.btn Download CSV
+   
 
