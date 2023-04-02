@@ -6,7 +6,7 @@
    "exec": "node ./bin/www",
    "watch": [
      "public/stylesheets/*.css",
-     "public/javascript/*/js",
+     "public/javascript/*.js",
      "views/*.pug",
      "app.js"
    ]
