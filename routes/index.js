@@ -4,6 +4,7 @@ const path = require("path");
 
 const rateLimit = require("express-rate-limit");
 const updateData = require("../lib/get_data");
+const getData = require("../lib/get_data/utils/readFile");
 
 const limiter = rateLimit({
    windowMs: 300000, // 5 minute
@@ -13,17 +14,14 @@ const limiter = rateLimit({
       return "global";
    },
    handler: function (req, res, next) {
-      res.render("index", {
-         title: "Express",
-         resetTime: req.rateLimit.resetTime,
-         error: "Rate limit exceeded!"
-      });
+      res.status(429).json("Too many requests")
    }
 });
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
-   res.render("index");
+   const { timestamp } = getData();
+   res.render("index", { timestamp });
 });
 
 router.post("/download", (req, res, next) => {
@@ -37,8 +35,8 @@ router.post("/download", (req, res, next) => {
 });
 
 router.post("/update", limiter, async (req, res, next) => {
-   const updated = await updateData();
-   res.status(200).json(updated);
+   const timestamp = await updateData();
+   res.status(200).json(timestamp);
 });
 
 module.exports = router;
