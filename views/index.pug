@@ -3,7 +3,10 @@ extends layout
 block content
   main.main
     h1.title Rabbithole Quest Data
+      p.timestamp(data-timestamp=timestamp)
       div.container
+        input#threshold(type="range", min="10", max="150", step="10", value="20")
+        p#threshold-value 20
         button#update.btn Update Data
         button#download.btn Download CSV
    
