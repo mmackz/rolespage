@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
 
 const rateLimit = require("express-rate-limit");
 const updateData = require("../lib/get_data");
+const write = require("../lib/get_data/utils/writeFile");
 const getData = require("../lib/get_data/utils/readFile");
 
 const limiter = rateLimit({
@@ -14,7 +14,7 @@ const limiter = rateLimit({
       return "global";
    },
    handler: function (req, res, next) {
-      res.status(429).json("Too many requests")
+      res.status(429).json("Too many requests");
    }
 });
 
@@ -24,14 +24,28 @@ router.get("/", (req, res, next) => {
    res.render("index", { timestamp });
 });
 
-router.post("/download", (req, res, next) => {
-   const filePath = "./lib/get_data/files/output.csv";
-   res.download(filePath, "rh_quest_amounts.csv", (err) => {
-      if (err) {
-         console.error(err);
-         res.status(404).json("File not found");
-      }
-   });
+router.get("/download", async (req, res, next) => {
+   const threshold = parseInt(req.query.threshold);
+   const { timestamp } = getData();
+   const { results } = getData();
+   const csv = write.csv(results, threshold);
+
+   // Get the current date/time to include in the filename
+   const now = new Date(timestamp);
+   const month = now.getMonth() + 1;
+   const day = now.getDate();
+   const hour = now.getHours();
+   const minute = now.getMinutes();
+
+   // Set the filename to include the date and threshold value
+   const filename = `${month}_${day}_${hour}${minute}_quests_${threshold}.csv`;
+
+   // Set the response headers to indicate that a CSV file is being downloaded
+   res.setHeader("Content-Type", "text/csv");
+   res.setHeader("Content-Disposition", `attachment; filename=${filename}`);
+
+   // Send the CSV data as a response
+   res.send(csv);
 });
 
 router.post("/update", limiter, async (req, res, next) => {

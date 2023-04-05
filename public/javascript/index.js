@@ -13,17 +13,8 @@ slider.addEventListener("input", (event) => {
    thresholdValue.textContent = event.target.value;
 });
 
-downloadButton.addEventListener("click", async () => {
-   try {
-      const response = await fetch("/download", {
-         method: "POST",
-         body: JSON.stringify({ threshold: slider.value })
-      });
-      const data = await response.json();
-      console.log(data);
-   } catch (e) {
-      console.log(e);
-   }
+downloadButton.addEventListener("click", () => {
+   window.location.href = `/download?threshold=${slider.value}`;
 });
 
 updateButton.addEventListener("click", async () => {
