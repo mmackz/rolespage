@@ -1,8 +1,34 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+   padding: 50px;
+   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+   color: #00b7ff;
+}
+
+#address-table {
+   width: fit-content;
+   font-size: 0.9rem;
+   max-height: 600px;
+   overflow-y: auto;
+   border: 1px solid black;
+}
+
+.table-row {
+   display: flex;
+   border: 1px solid black;
+}
+
+.table-cell {
+   padding: 0.25rem 0.5rem;
+}
+
+.table-cell:first-child {
+   width: 380px;
+   border-right: 1px solid black;
+}
+
+.table-cell:last-child {
+   min-width: 1.5rem;
 }
