@@ -2,13 +2,18 @@ extends layout
 
 block content
   main.main
-    h1.title Rabbithole Quest Data
-      p.timestamp(data-timestamp=timestamp)
-      div.container
+    h1.title Rabbithole Allowlist Creator
+    div.container
+      div
+        p.timestamp(data-timestamp=timestamp)
         input#threshold(type="range", min="10", max="150", step="10", value="20")
         p#threshold-value 20
         button#update.btn Update Data
         button#download.btn Download CSV
-      div#address-table
+      div.table-container
+        div.row.header
+          div.cell address
+          div.cell #
+        div#address-table
    
 

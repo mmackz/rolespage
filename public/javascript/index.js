@@ -1,11 +1,32 @@
 const downloadButton = document.querySelector("#download");
 const updateButton = document.querySelector("#update");
 const timestamp = document.querySelector(".timestamp");
+const addressTable = document.getElementById("address-table");
 
 const slider = document.querySelector("#threshold");
 const thresholdValue = document.querySelector("#threshold-value");
 
-let addresses;
+const emptyTable = document.createElement("div");
+emptyTable.className = "empty";
+
+// initialize addresses table
+let addresses = null;
+addressTable.appendChild(emptyTable);
+
+const generateButton = document.createElement("button");
+generateButton.textContent = "Generate Allowlist";
+
+generateButton.addEventListener("click", () => {
+   // Fetch data from the server
+   fetch("/download")
+      .then((response) => response.json())
+      .then((data) => {
+         addresses = data;
+         // Generate the HTML list and append it to the container
+         populateAddressTable(addresses, slider.value);
+      });
+});
+emptyTable.appendChild(generateButton);
 
 timestamp.textContent = `Last Update: ${new Date(
    +timestamp.getAttribute("data-timestamp")
@@ -13,7 +34,10 @@ timestamp.textContent = `Last Update: ${new Date(
 
 slider.addEventListener("input", (event) => {
    thresholdValue.textContent = event.target.value;
-   populateAddressTable(addresses, slider.value);
+
+   if (addresses !== null) {
+      populateAddressTable(addresses, slider.value);
+   }
 });
 
 downloadButton.addEventListener("click", async () => {
@@ -41,14 +65,8 @@ updateButton.addEventListener("click", async () => {
    }
 });
 
-const addressTable = document.getElementById("address-table");
-
 function populateAddressTable(data, threshold) {
-
-   addressTable.innerHTML = `<div class="table-row">
-                                <div class="table-cell">Address</div>
-                                <div class="table-cell">#</div>
-                             </div>`;
+   addressTable.innerHTML = "";
 
    // Add new rows to the table
    data.forEach(([address, number]) => {
@@ -56,9 +74,9 @@ function populateAddressTable(data, threshold) {
          const row = document.createElement("div");
          const addressCell = document.createElement("div");
          const numberCell = document.createElement("div");
-         row.className = "table-row";
-         addressCell.className = "table-cell";
-         numberCell.className = "table-cell";
+         row.className = "row";
+         addressCell.className = "cell";
+         numberCell.className = "cell";
          addressCell.textContent = address;
          numberCell.textContent = number;
          row.appendChild(addressCell);
@@ -67,12 +85,3 @@ function populateAddressTable(data, threshold) {
       }
    });
 }
-
-// Fetch data from the server
-fetch("/download")
-   .then((response) => response.json())
-   .then((data) => {
-      addresses = data;
-      // Generate the HTML list and append it to the container
-      populateAddressTable(addresses, slider.value);
-   });
