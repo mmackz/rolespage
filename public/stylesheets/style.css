@@ -1,5 +1,24 @@
 body {
-   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+   font-family: 'Poppins', sans-serif;
+}
+
+img {
+   width: 100%;
+}
+
+.title-container {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+}
+
+.title {
+   font-size: 1.4rem;
+   font-weight: bold;
+}
+
+.logo {
+   width: 2rem;
 }
 
 .container {

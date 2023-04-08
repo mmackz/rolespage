@@ -2,10 +2,14 @@ extends layout
 
 block content
   main.main
-    h1.title Rabbithole Allowlist Creator
+    div.title-container
+      div.logo
+        img(src="/images/rabbithole.png", alt="logo")
+      h1.title Rabbithole Allowlist Creator
     p#last-update(data-timestamp=timestamp)
     div.container
       div.controls
+        label(for="slider") Select threshold of quests
         input#slider(type="range" min=10 max=150 step=5 value=30)
         p#slider-value
         button#copy Copy Addresses To Clipboard
