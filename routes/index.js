@@ -19,11 +19,12 @@ const limiter = rateLimit({
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
-   const { timestamp } = getData();
-   res.render("index", { timestamp });
+   const { timestamp, results } = getData();
+   const addresses = Object.values(results).filter((num) => num >= 30).length;
+   res.render("index", { timestamp, addresses });
 });
 
-router.get("/download", async (req, res, next) => {
+router.get("/get_data", async (req, res, next) => {
    const { results } = getData();
    res.status(200).json(
       Object.entries(results)

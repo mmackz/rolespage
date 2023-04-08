@@ -3,17 +3,11 @@ extends layout
 block content
   main.main
     h1.title Rabbithole Allowlist Creator
+    p#last-update(data-timestamp=timestamp)
     div.container
-      div
-        p.timestamp(data-timestamp=timestamp)
-        input#threshold(type="range", min="10", max="150", step="10", value="20")
-        p#threshold-value 20
-        button#update.btn Update Data
-        button#download.btn Download CSV
-      div.table-container
-        div.row.header
-          div.cell address
-          div.cell #
-        div#address-table
-   
-
+      div.controls
+        input#slider(type="range" min=10 max=150 step=5 value=30)
+        p#slider-value
+        button#copy Copy Addresses To Clipboard
+      div.status
+        p #[span#text #{addresses}] addresses selected

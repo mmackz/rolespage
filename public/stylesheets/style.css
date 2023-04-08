@@ -1,80 +1,17 @@
 body {
-   padding: 50px;
    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-   color: #00b7ff;
-}
-
-.main {
-   display: flex;
-   flex-direction: column;
-   width: min(90%, 800px);
-   margin: 1rem auto;
-}
-
-.title {
-   font-size: 1.5rem;
-   text-align: center;
-   font-weight: bold;
 }
 
 .container {
    display: flex;
+   gap: 1rem;
 }
 
-.empty {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: calc(100% - 1.5rem);
-   border-top: 1px solid black;
-   padding-top: 2rem;
-   padding-bottom: 2rem;
-}
-
-#address-table {
-   font-size: 0.8rem;
-   max-height: 404px;
-   overflow-y: auto;
-   border: 1px solid black;
-   border-top: none;
-}
-
-.row {
-   display: flex;
-   border-top: 1px solid black;
-}
-
-.header {
-   border: 1px solid black;
-   border-bottom: none;
-}
-
-.header > .cell {
-   font-size: 0.9rem;
-   font-weight: bold;
-}
-
-.header > .cell:first-child {
-   padding-left: 0.75rem;
-}
-
-.cell {
-   padding: 0.25rem 0.5rem;
-}
-
-.cell:first-child {
-   width: 360px;
-   font-size: 0.75rem;
-   border-right: 1px solid black;
-}
-
-.cell:last-child {
-   min-width: 1.5rem;
-   padding-inline: 0.25rem;
-   text-align: center;
+.status {
+   padding: 1rem;
+   border: 2px black solid;
+   border-radius: 0.5rem;
+   min-width: 10rem;
 }
 
 ::-webkit-scrollbar {
