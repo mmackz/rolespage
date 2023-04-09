@@ -1,14 +1,35 @@
+html {
+   height: 100%;
+   min-height: 100vh;
+}
+
 body {
-   font-family: 'Poppins', sans-serif;
+   font-family: "Poppins", sans-serif;
+   height: 100%;
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: rgb(53, 50, 50);
 }
 
 img {
    width: 100%;
 }
 
+.main {
+   width: min(90%, 600px);
+   margin: 0 auto;
+   border: 3px solid black;
+   border-radius: 0.75rem;
+   padding: 1.5rem 1.5rem 2rem;
+   background-color: rgb(217, 217, 217);
+}
+
 .title-container {
    display: flex;
    align-items: center;
+   justify-content: center;
    gap: 0.5rem;
 }
 
@@ -21,16 +42,157 @@ img {
    width: 2rem;
 }
 
+.timestamp {
+   font-weight: bold;
+   width: fit-content;
+   margin: 0.5rem auto 1rem;
+   padding: 0.25rem 0.5rem;
+   font-size: 0.85rem;
+   text-align: center;
+   text-decoration: underline;
+}
+
 .container {
    display: flex;
+   justify-content: center;
    gap: 1rem;
 }
 
-.status {
+.controls {
+   font-weight: bold;
+   font-size: 0.975rem;
+   letter-spacing: -0.5px;
+}
+
+.slider-container {
+   display: flex;
+   /* justify-content: space-between; */
+   gap: 0.25rem;
+}
+
+.slider {
+   flex-grow: 1;
+   transform: translateY(-1px);
+}
+
+.slider-value {
+   min-width: 1.5rem;
+   margin-right: auto;
+   text-align: end;
+   font-size: 1rem;
+   letter-spacing: -1px;
+}
+
+.box {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   gap: 0.75rem;
    padding: 1rem;
-   border: 2px black solid;
+   border: 3px black solid;
    border-radius: 0.5rem;
-   min-width: 10rem;
+   min-width: 15rem;
+   max-width: 25rem;
+   background: rgb(53, 50, 50);
+   color: white;
+}
+
+.box *:first-child {
+   text-align: center;
+}
+
+.copy {
+   font-family: "Poppins", sans-serif;
+   letter-spacing: -0.5px;
+   border-radius: 0.5rem;
+   border: none;
+   padding: 0.25rem 0.1rem;
+   cursor: pointer;
+}
+
+.copy:active {
+   transform: scale(0.99);
+   box-shadow: inset 0px 0px 3px black;
+}
+
+.copy:hover {
+   transform: scale(1.01);
+   box-shadow: 0px 0px 5px white;
+}
+
+.flex {
+   display: flex;
+   gap: 0.5rem;
+   align-items: center;
+   justify-content: center;
+}
+
+.checkmark__circle {
+   stroke-dasharray: 166;
+   stroke-dashoffset: 166;
+   stroke-width: 2;
+   stroke-miterlimit: 10;
+   stroke: rgb(0, 0, 0);
+   fill: none;
+   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+   width: 1rem;
+   height: 1rem;
+   border-radius: 50%;
+   display: block;
+   stroke-width: 2;
+   stroke: rgb(0, 0, 0);
+   stroke-miterlimit: 10;
+   box-shadow: inset 0px 0px 0px #585a56;
+   animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark__check {
+   transform-origin: 50% 50%;
+   stroke-dasharray: 48;
+   stroke-dashoffset: 48;
+   animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+.fadein {
+   animation: fade 2.5s;
+}
+
+@keyframes fade {
+   0% {
+      opacity: 0;
+   }
+   25% {
+      opacity: 1;
+   }
+   85% {
+      opacity: 1;
+   }
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes stroke {
+   100% {
+      stroke-dashoffset: 0;
+   }
+}
+@keyframes scale {
+   0%,
+   100% {
+      transform: none;
+   }
+   50% {
+      transform: scale3d(1.1, 1.1, 1);
+   }
+}
+@keyframes fill {
+   100% {
+      box-shadow: inset 0px 0px 0px 30px #fff;
+   }
 }
 
 ::-webkit-scrollbar {
@@ -41,4 +203,31 @@ img {
 ::-webkit-scrollbar-thumb {
    background: rgba(1, 1, 121, 0.641);
    border-radius: 1rem;
+}
+
+@media (max-width: 640px) {
+   .title {
+      font-size: 1.25rem;
+   }
+
+   .container {
+      flex-direction: column;
+      max-width: 400px;
+      margin: 0 auto;
+   }
+}
+
+@media (max-width: 420px) {
+   .main {
+      padding-inline: 1.2rem;
+   }
+
+   .logo {
+      width: 1.75rem;
+   }
+
+   .title {
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+   }
 }

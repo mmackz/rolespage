@@ -6,12 +6,15 @@ block content
       div.logo
         img(src="/images/rabbithole.png", alt="logo")
       h1.title Rabbithole Allowlist Creator
-    p#last-update(data-timestamp=timestamp)
+    p#last-update.timestamp(data-timestamp=timestamp)
     div.container
-      div.controls
+      div.box.controls
         label(for="slider") Select threshold of quests
-        input#slider(type="range" min=10 max=150 step=5 value=30)
-        p#slider-value
-        button#copy Copy Addresses To Clipboard
-      div.status
+        div.slider-container
+          input#slider.slider(type="range" min=10 max=150 step=5 value=30)
+          p#slider-value.slider-value
+      div.box.status
         p #[span#text #{addresses}] addresses selected
+        button#copy.copy
+          div#button-text.btn-text
+            p Copy Addresses To Clipboard
