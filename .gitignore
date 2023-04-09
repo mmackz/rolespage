@@ -1,3 +1,4 @@
 /node_modules
 .env
-lib/get_data/files
+lib/get_data/files/*copy.*
+lib/get_data/files/*.csv
