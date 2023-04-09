@@ -73,6 +73,7 @@ img {
 .slider {
    flex-grow: 1;
    transform: translateY(-1px);
+   cursor: pointer;
 }
 
 .slider-value {
