@@ -30,7 +30,7 @@ router.get("/get_data", async (req, res, next) => {
    );
 });
 
-router.get("/update", limiter, async (req, res, next) => {
+router.post("/update", limiter, async (req, res, next) => {
    const timestamp = await updateData();
    res.status(200).json(timestamp);
 });
