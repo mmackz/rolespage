@@ -2,3 +2,4 @@
 .env
 lib/get_data/files/*copy.*
 lib/get_data/files/*.csv
+lib/get_data/files/data copy*
